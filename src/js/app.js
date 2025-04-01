@@ -3,7 +3,7 @@ import { createNode } from './utils';
 import { words } from './words';
 
 const getWord = () => words.splice(Math.floor(Math.random() * (words.length)), 1)[0];
-const duration = (1000*61);
+const duration = (1000*121);
 // const duration = (1000*60*60);
 
 let word = null;

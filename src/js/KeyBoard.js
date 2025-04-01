@@ -71,8 +71,6 @@ export class KeyBoard {
       const rowNode = createNode('div', 'row');
       row.keys.forEach((key) => {
         const keyNode = createNode('button', 'key');
-        // keyNode.setAttribute('data-key', key[0]);
-        // keyNode.setAttribute('data-value', key[1]);
         keyNode.innerHTML = key[0];
         rowNode.appendChild(keyNode);
         keyNode.addEventListener('click', (e) => {
@@ -85,9 +83,7 @@ export class KeyBoard {
 
   };
   renderTo(target) {
-    
     target.appendChild(this.node);
     return this;
-
   };
 };

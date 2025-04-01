@@ -67,6 +67,7 @@ body {
   user-select: none;
   margin: 1px;
   border: none;
+  -webkit-tap-highlight-color: transparent;
   &:active {
     transform: scale(0.9);
   }

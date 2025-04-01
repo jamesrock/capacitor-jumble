@@ -1,14 +1,19 @@
 import { KeyBoard } from './KeyBoard';
 import { createNode } from './utils';
-import { words } from './words';
+import { getWord } from './words';
+import { Storage } from './Storage';
 
-const getWord = () => words.splice(Math.floor(Math.random() * (words.length)), 1)[0];
 const duration = (1000*121);
+// const duration = (1000*11);
 // const duration = (1000*60*60);
+
+const storage = new Storage('me.jamesrock.jumble');
+let best = storage.get('best') || 0;
+// console.log('best', best);
 
 let word = null;
 let input = '';
-let count = 0;
+let score = 0;
 let time = 0;
 let stats = null;
 let display = null;
@@ -52,7 +57,7 @@ const type = (key) => {
   console.log(input);
   
   if(check()) {
-    count ++;
+    score ++;
     setTimeout(() => {
       word = getWord();
       input = '';
@@ -75,7 +80,7 @@ const start = () => {
   display = createNode('div', 'display');
   keyboard = new KeyBoard(type);
   time = new Date().getTime() + duration;
-  count = 0;
+  score = 0;
   input = '';
   word = getWord();
 
@@ -90,12 +95,23 @@ const start = () => {
 };
 
 const showGameOverScreen = () => {
-  gameOverScreen.innerHTML = `<div class="game-over-body"><h2>Game over!</h2><p class="score">You scored ${count}.</p><p class="retry">Tap to try again.</p></div>`;
+  gameOverScreen.innerHTML = `<div class="game-over-body">\
+    <h2>Game over!</h2>\
+    <p class="score">Score: ${score}</p>\
+    <p class="best">Best: ${best}</p>\
+    <p class="retry">Tap to try again.</p>\
+  </div>`;
   gameOverScreen.setAttribute('data-show', true);
+  if(score>best) {
+    best = score;
+    storage.set('best', best);
+  };
 };
 
 const root = document.querySelector(':root');
-const keySize = Math.floor((window.innerWidth - 20) / 10);
+const maxKeySize = 60;
+let keySize = Math.floor((window.innerWidth - 20) / 10);
+keySize = keySize > maxKeySize ? maxKeySize : keySize;
 
 const gameOverScreen = createNode('div', 'game-over');
 gameOverScreen.addEventListener('click', () => {

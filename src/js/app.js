@@ -35,6 +35,12 @@ const type = (letter) => {
   
 };
 
+const root = document.querySelector(':root');
+const keySize = ((window.innerWidth - 20) / 10);
+
+root.style.setProperty('--key-size', `${keySize}px`);
+root.style.setProperty('--key-font-size', `${keySize-15}px`);
+
 const display = createNode('div', 'display');
 const keyboard = new KeyBoard(type);
 

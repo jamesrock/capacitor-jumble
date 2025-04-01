@@ -83,18 +83,18 @@ body {
   font-weight: 900;
   -webkit-user-select: none;
   user-select: none;
-  margin: 1px;
-  border: none;
+  border: solid 1px white;
   -webkit-tap-highlight-color: transparent;
   &:active {
-    transform: scale(0.9);
+    border-width: 3px;
+    font-size: var(--key-active-font-size);
   }
 }
 
 .display {
   display: flex;
   flex-direction: column;
-  font-size: 42px;
+  font-size: 46px;
   font-weight: 900;
 }
 

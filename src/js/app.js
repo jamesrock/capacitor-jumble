@@ -42,7 +42,8 @@ const render = () => {
 const type = (key) => {
 
   if(key[1]===-1) {
-    input = input.split('').splice(0, (input.length - 1)).join('');
+    word = getWord();
+    input = '';
   }
   else if(word.split('')[input.length]===key[0]) {
     input += key[0];
@@ -55,7 +56,7 @@ const type = (key) => {
     setTimeout(() => {
       word = getWord();
       input = '';
-    }, 1000);
+    }, 500);
   };
   
 };
@@ -105,7 +106,8 @@ document.body.appendChild(gameOverScreen);
 
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);
-root.style.setProperty('--key-font-size', `${keySize-15}px`);
+root.style.setProperty('--key-font-size', `${keySize-10}px`);
+root.style.setProperty('--key-active-font-size', `${keySize-13}px`);
 root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 

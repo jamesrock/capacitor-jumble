@@ -61,7 +61,7 @@ export class KeyBoard {
     this.rows = [
       new KeyBoardRow(this, 10),
       new KeyBoardRow(this, 9),
-      new KeyBoardRow(this, 7).addKey(['&#x21e4;', -1])
+      new KeyBoardRow(this, 7).addKey(['&#x21e5;', -1])
     ];
     this.handler = handler;
 

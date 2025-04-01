@@ -13,7 +13,7 @@ const check = () => {
 };
 
 const render = () => {
-  display.innerHTML = `<div>${word}</div><div>${input || '&nbsp;'}</div>`
+  display.innerHTML = `<div>${word}</div><div>${input || '&nbsp;'}</div>`;
 };
 
 const type = (letter) => {

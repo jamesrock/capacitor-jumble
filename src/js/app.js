@@ -3,7 +3,8 @@ import { createNode } from './utils';
 import { words } from './words';
 
 const getWord = () => words.splice(Math.floor(Math.random() * (words.length)), 1)[0];
-const duration = (1000*61);
+// const duration = (1000*61);
+const duration = (1000*60*60);
 
 let word = null;
 let input = '';
@@ -25,7 +26,10 @@ const render = () => {
   if(diff>0) {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    display.innerHTML = `<div class="word">${word}</div><div class="input">${input || '&nbsp;'}</div>`;
+    const splitInput = input.split('');
+    display.innerHTML = `<div class="word">${word.split('').map((char, index) => {
+      return splitInput[index]===char ? `<span class="letter complete">${char}</span>` : `<span class="letter incomplete">${char}</span>`;
+    }).join('')}</div>`;
     stats.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     requestAnimationFrame(render);
   }
@@ -40,9 +44,11 @@ const type = (key) => {
   if(key[1]===-1) {
     input = input.split('').splice(0, (input.length - 1)).join('');
   }
-  else {
+  else if(word.split('')[input.length]===key[0]) {
     input += key[0];
   };
+
+  console.log(input);
   
   if(check()) {
     count ++;
@@ -83,7 +89,7 @@ const start = () => {
 };
 
 const showGameOverScreen = () => {
-  gameOverScreen.innerHTML = `<div class="game-over-body"><h2>Game over!</h2><p class="score">You scored ${count}.</p><p class="retry">Press to try again.</p></div>`;
+  gameOverScreen.innerHTML = `<div class="game-over-body"><h2>Game over!</h2><p class="score">You scored ${count}.</p><p class="retry">Tap to try again.</p></div>`;
   gameOverScreen.setAttribute('data-show', true);
 };
 

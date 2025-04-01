@@ -71,21 +71,16 @@ export class KeyBoard {
       const rowNode = createNode('div', 'row');
       row.keys.forEach((key) => {
         const keyNode = createNode('button', 'key');
-        keyNode.setAttribute('data-key', key[0]);
-        keyNode.setAttribute('data-value', key[1]);
+        // keyNode.setAttribute('data-key', key[0]);
+        // keyNode.setAttribute('data-value', key[1]);
         keyNode.innerHTML = key[0];
         rowNode.appendChild(keyNode);
+        keyNode.addEventListener('click', (e) => {
+          this.handler(key);
+          e.preventDefault();
+        });
       });
       this.node.appendChild(rowNode);
-    });
-
-    this.node.addEventListener('click', (e) => {
-      const key = e.target.getAttribute('data-key');
-      const value = parseFloat(e.target.getAttribute('data-value'));
-      if(key) {
-        this.handler(key, value);
-      };
-      e.preventDefault();
     });
 
   };

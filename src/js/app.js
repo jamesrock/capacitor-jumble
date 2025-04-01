@@ -17,13 +17,13 @@ const render = () => {
   stats.innerHTML = `${count}`;
 };
 
-const type = (letter, type) => {
+const type = (key) => {
 
-  if(type===-1) {
+  if(key[1]===-1) {
     input = input.split('').splice(0, (input.length - 1)).join('');
   }
   else {
-    input += letter;
+    input += key[0];
   };
   
   if(check()) {

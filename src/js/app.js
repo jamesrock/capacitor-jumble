@@ -3,18 +3,36 @@ import { createNode } from './utils';
 import { words } from './words';
 
 const getWord = () => words.splice(Math.floor(Math.random() * (words.length)), 1)[0];
+const duration = (1000*61);
 
-let word = getWord();
+let word = null;
 let input = '';
 let count = 0;
+let time = 0;
+let stats = null;
+let display = null;
+let keyboard = null;
 
 const check = () => {
   return input === word;
 };
 
 const render = () => {
-  display.innerHTML = `<div>${word}</div><div>${input || '&nbsp;'}</div>`;
-  stats.innerHTML = `${count}`;
+  
+  const now = new Date().getTime();
+  const diff = time - now;
+
+  if(diff>0) {
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    display.innerHTML = `<div class="word">${word}</div><div class="input">${input || '&nbsp;'}</div>`;
+    stats.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    requestAnimationFrame(render);
+  }
+  else {
+    showGameOverScreen();
+  };
+  
 };
 
 const type = (key) => {
@@ -27,22 +45,57 @@ const type = (key) => {
   };
   
   if(check()) {
-    render();
     count ++;
     setTimeout(() => {
       word = getWord();
       input = '';
-      render();
     }, 1000);
-  }
-  else {
-    render();
   };
   
 };
 
+const start = () => {
+
+  if(stats && display && keyboard) {
+    document.body.removeChild(stats);
+    document.body.removeChild(display);
+    keyboard.removeFrom(document.body);
+  };
+
+  gameOverScreen.setAttribute('data-show', false);
+
+  stats = createNode('div', 'stats');
+  display = createNode('div', 'display');
+  keyboard = new KeyBoard(type);
+  time = new Date().getTime() + duration;
+  count = 0;
+  input = '';
+  word = getWord();
+
+  document.body.appendChild(stats);
+  document.body.appendChild(display);
+  keyboard.renderTo(document.body);
+  
+  render();
+
+  console.log(keyboard);
+
+};
+
+const showGameOverScreen = () => {
+  gameOverScreen.innerHTML = `<div class="game-over-body"><h2>Game over!</h2><p class="score">You scored ${count}.</p><p class="retry">Press to try again.</p></div>`;
+  gameOverScreen.setAttribute('data-show', true);
+};
+
 const root = document.querySelector(':root');
 const keySize = Math.floor((window.innerWidth - 20 - (9*2)) / 10);
+
+const gameOverScreen = createNode('div', 'game-over');
+gameOverScreen.addEventListener('click', () => {
+  start();
+});
+
+document.body.appendChild(gameOverScreen);
 
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);
@@ -50,15 +103,6 @@ root.style.setProperty('--key-font-size', `${keySize-15}px`);
 root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 
-const stats = createNode('div', 'stats');
-const display = createNode('div', 'display');
-const keyboard = new KeyBoard(type);
-
-document.body.appendChild(stats);
-document.body.appendChild(display);
-keyboard.renderTo(document.body);
-
-console.log(keyboard);
-render();
+start();
 
 document.addEventListener('touchstart', () => {}, false);

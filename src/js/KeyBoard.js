@@ -8,35 +8,6 @@ const shuffle = (cards) => {
   return cards;
 };
 
-const keys = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z'
-];
-
 class KeyBoardRow {
   constructor(keyboard, count) {
     
@@ -58,7 +29,34 @@ class KeyBoardRow {
 export class KeyBoard {
   constructor(handler) {
 
-    this.keys = shuffle(keys);
+    this.keys = shuffle([
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'K',
+      'L',
+      'M',
+      'N',
+      'O',
+      'P',
+      'Q',
+      'R',
+      'S',
+      'T',
+      'U',
+      'V',
+      'W',
+      'X',
+      'Y',
+      'Z'
+    ]);
     this.node = createNode('div', 'keyboard');
     this.rows = [
       new KeyBoardRow(this, 10),
@@ -84,6 +82,10 @@ export class KeyBoard {
   };
   renderTo(target) {
     target.appendChild(this.node);
+    return this;
+  };
+  removeFrom(target) {
+    target.removeChild(this.node);
     return this;
   };
 };

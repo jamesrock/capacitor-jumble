@@ -59,3 +59,5 @@ keyboard.renderTo(document.body);
 
 console.log(keyboard);
 render();
+
+document.addEventListener('touchstart', () => {}, false);

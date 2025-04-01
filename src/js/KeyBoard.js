@@ -85,6 +85,7 @@ export class KeyBoard {
       if(key) {
         this.handler(key, value);
       };
+      e.preventDefault();
     });
 
   };

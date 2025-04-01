@@ -71,7 +71,7 @@ export class KeyBoard {
         const keyNode = createNode('button', 'key');
         keyNode.innerHTML = key[0];
         rowNode.appendChild(keyNode);
-        keyNode.addEventListener('click', (e) => {
+        keyNode.addEventListener('touchend', (e) => {
           this.handler(key);
           e.preventDefault();
         });

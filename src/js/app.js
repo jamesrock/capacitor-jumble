@@ -95,7 +95,7 @@ const showGameOverScreen = () => {
 };
 
 const root = document.querySelector(':root');
-const keySize = Math.floor((window.innerWidth - 20 - (9*2)) / 10);
+const keySize = Math.floor((window.innerWidth - 20) / 10);
 
 const gameOverScreen = createNode('div', 'game-over');
 gameOverScreen.addEventListener('click', () => {

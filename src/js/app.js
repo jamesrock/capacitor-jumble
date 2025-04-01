@@ -40,6 +40,8 @@ const keySize = ((window.innerWidth - 20) / 10);
 
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-font-size', `${keySize-15}px`);
+root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
+root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 
 const display = createNode('div', 'display');
 const keyboard = new KeyBoard(type);

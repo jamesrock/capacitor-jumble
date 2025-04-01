@@ -45,9 +45,13 @@ class KeyBoardRow {
     this.keys = [];
 
     for(var i=0;i<count;i++) {
-      this.keys.push(this.keyboard.keys.splice(Math.floor(Math.random() * (this.keyboard.keys.length)), 1)[0]);
+      this.keys.push([this.keyboard.keys.splice(Math.floor(Math.random() * (this.keyboard.keys.length)), 1)[0], 1]);
     };
 
+  };
+  addKey(key) {
+    this.keys.push(key);
+    return this;
   };
 };
 
@@ -59,16 +63,17 @@ export class KeyBoard {
     this.rows = [
       new KeyBoardRow(this, 10),
       new KeyBoardRow(this, 9),
-      new KeyBoardRow(this, 7)
+      new KeyBoardRow(this, 7).addKey(['&#x21e4;', -1])
     ];
     this.handler = handler;
 
     this.rows.forEach((row) => {
       const rowNode = createNode('div', 'row');
       row.keys.forEach((key) => {
-        const keyNode = createNode('div', 'key');
-        keyNode.setAttribute('data-key', key);
-        keyNode.innerHTML = key;
+        const keyNode = createNode('button', 'key');
+        keyNode.setAttribute('data-key', key[0]);
+        keyNode.setAttribute('data-value', key[1]);
+        keyNode.innerHTML = key[0];
         rowNode.appendChild(keyNode);
       });
       this.node.appendChild(rowNode);
@@ -76,8 +81,9 @@ export class KeyBoard {
 
     this.node.addEventListener('click', (e) => {
       const key = e.target.getAttribute('data-key');
+      const value = parseFloat(e.target.getAttribute('data-value'));
       if(key) {
-        this.handler(key);
+        this.handler(key, value);
       };
     });
 

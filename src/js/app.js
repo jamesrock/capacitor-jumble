@@ -14,11 +14,17 @@ const check = () => {
 
 const render = () => {
   display.innerHTML = `<div>${word}</div><div>${input || '&nbsp;'}</div>`;
+  stats.innerHTML = `${count}`;
 };
 
-const type = (letter) => {
-  
-  input += letter;
+const type = (letter, type) => {
+
+  if(type===-1) {
+    input = input.split('').splice(0, (input.length - 1)).join('');
+  }
+  else {
+    input += letter;
+  };
   
   if(check()) {
     render();
@@ -36,16 +42,18 @@ const type = (letter) => {
 };
 
 const root = document.querySelector(':root');
-const keySize = ((window.innerWidth - 20) / 10);
+const keySize = Math.floor((window.innerWidth - 20) / 10);
 
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-font-size', `${keySize-15}px`);
 root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 
+const stats = createNode('div', 'stats');
 const display = createNode('div', 'display');
 const keyboard = new KeyBoard(type);
 
+document.body.appendChild(stats);
 document.body.appendChild(display);
 keyboard.renderTo(document.body);
 

@@ -1,0 +1,10 @@
+{
+  "appId": "me.jamesrock.jumble",
+  "appName": "jumble",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}

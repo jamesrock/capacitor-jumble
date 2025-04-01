@@ -42,7 +42,7 @@ const type = (letter, type) => {
 };
 
 const root = document.querySelector(':root');
-const keySize = Math.floor((window.innerWidth - 20) / 10);
+const keySize = Math.floor((window.innerWidth - 20 - (9*2)) / 10);
 
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);

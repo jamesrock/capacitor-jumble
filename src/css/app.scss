@@ -57,7 +57,7 @@ body {
   height: var(--key-size-height);
   background-color: fuchsia;
   color: white;
-  border: solid 1px white;
+  // border: solid 1px white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,6 +66,8 @@ body {
   font-weight: 700;
   -webkit-user-select: none;
   user-select: none;
+  margin: 1px;
+  border: none;
   &:active {
     transform: scale(0.9);
   }

@@ -129,7 +129,7 @@ root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);
 root.style.setProperty('--key-font-size', `${keySize-10}px`);
 root.style.setProperty('--key-active-font-size', `${keySize-14}px`);
-root.style.setProperty('--keyboard-bottom', `${isApp ? 50 : 10}px`);
+root.style.setProperty('--keyboard-bottom', `${isApp ? 70 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 root.style.setProperty('--time-top', `${isApp ? 100 : 50}px`);
 

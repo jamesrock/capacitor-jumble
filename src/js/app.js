@@ -127,6 +127,7 @@ root.style.setProperty('--key-font-size', `${keySize-10}px`);
 root.style.setProperty('--key-active-font-size', `${keySize-14}px`);
 root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
+root.style.setProperty('--time-top', `${navigator.standalone ? 100 : 50}px`);
 
 start();
 

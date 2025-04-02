@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { KeyBoard } from './KeyBoard';
 import { createNode } from './utils';
@@ -7,6 +8,9 @@ import { Storage } from './Storage';
 const duration = (1000*121);
 // const duration = (1000*11);
 // const duration = (1000*60*60);
+
+const platform = Capacitor.getPlatform();
+const isApp = navigator.standalone || platform === 'ios';
 
 const storage = new Storage('me.jamesrock.jumble');
 let best = storage.get('best') || 0;
@@ -125,9 +129,9 @@ root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);
 root.style.setProperty('--key-font-size', `${keySize-10}px`);
 root.style.setProperty('--key-active-font-size', `${keySize-14}px`);
-root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
+root.style.setProperty('--keyboard-bottom', `${isApp ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
-root.style.setProperty('--time-top', `${navigator.standalone ? 100 : 50}px`);
+root.style.setProperty('--time-top', `${isApp ? 100 : 50}px`);
 
 start();
 

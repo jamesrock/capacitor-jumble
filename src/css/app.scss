@@ -27,7 +27,19 @@
 }
 
 :root {
+  --background: white;
+  --foreground: black;
   --highlight-color: fuchsia;
+  --key-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: black;
+    --foreground: white;
+    // --highlight-color: fuchsia;
+    // --key-color: white;
+  }
 }
 
 * {
@@ -38,6 +50,8 @@
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
+  background-color: var(--background);
+  color: var(--foreground);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,8 +82,8 @@ body {
   box-sizing: border-box;
   width: var(--key-size);
   height: var(--key-size-height);
-  background-color: fuchsia;
-  color: white;
+  background-color: var(--highlight-color);
+  color: var(--key-color);
   display: flex;
   align-items: center;
   justify-content: center;

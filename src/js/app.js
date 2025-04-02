@@ -95,6 +95,10 @@ const start = () => {
 };
 
 const showGameOverScreen = () => {
+  if(score>best) {
+    best = score;
+    storage.set('best', best);
+  };
   gameOverScreen.innerHTML = `<div class="game-over-body">\
     <h2>Game over!</h2>\
     <p class="score">Score: ${score}</p>\
@@ -102,10 +106,6 @@ const showGameOverScreen = () => {
     <p class="retry">Tap to try again.</p>\
   </div>`;
   gameOverScreen.setAttribute('data-show', true);
-  if(score>best) {
-    best = score;
-    storage.set('best', best);
-  };
 };
 
 const root = document.querySelector(':root');
@@ -123,7 +123,7 @@ document.body.appendChild(gameOverScreen);
 root.style.setProperty('--key-size', `${keySize}px`);
 root.style.setProperty('--key-size-height', `${keySize*1.25}px`);
 root.style.setProperty('--key-font-size', `${keySize-10}px`);
-root.style.setProperty('--key-active-font-size', `${keySize-13}px`);
+root.style.setProperty('--key-active-font-size', `${keySize-14}px`);
 root.style.setProperty('--keyboard-bottom', `${navigator.standalone ? 50 : 10}px`);
 root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 

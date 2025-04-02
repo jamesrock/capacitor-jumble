@@ -5,19 +5,19 @@
   src: url('../assets/fonts/Poppins-Medium.ttf');
 }
 
-@font-face {
-  font-family: 'Poppins';
-  font-weight: 600;
-  font-style: normal;
-  src: url('../assets/fonts/Poppins-SemiBold.ttf');
-}
+// @font-face {
+//   font-family: 'Poppins';
+//   font-weight: 600;
+//   font-style: normal;
+//   src: url('../assets/fonts/Poppins-SemiBold.ttf');
+// }
 
-@font-face {
-  font-family: 'Poppins';
-  font-weight: 700;
-  font-style: normal;
-  src: url('../assets/fonts/Poppins-Bold.ttf');
-}
+// @font-face {
+//   font-family: 'Poppins';
+//   font-weight: 700;
+//   font-style: normal;
+//   src: url('../assets/fonts/Poppins-Bold.ttf');
+// }
 
 @font-face {
   font-family: 'Poppins';
@@ -31,6 +31,20 @@
   font-weight: 900;
   font-style: italic;
   src: url('../assets/fonts/Poppins-BlackItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Azeret';
+  font-weight: 600;
+  font-style: normal;
+  src: url('../assets/fonts/AzeretMono-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Azeret';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../assets/fonts/AzeretMono-Bold.ttf');
 }
 
 :root {
@@ -53,6 +67,8 @@ body {
   padding-bottom: var(--body-padding);
   padding-top: 100px;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .keyboard {
@@ -98,13 +114,14 @@ body {
   font-weight: 900;
 }
 
-.stats {
-  font-family: 'Courier New', Courier, monospace;
+.time {
+  font-family: 'Azeret', monospace;
   position: absolute;
-  top: 150px;
+  top: 50px;
   font-size: 32px;
-  font-weight: 600;
-  color: grey;
+  font-weight: 700;
+  color: black;
+  opacity: 0.3;
 }
 
 .game-over {

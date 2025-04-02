@@ -1,3 +1,4 @@
+import { SplashScreen } from '@capacitor/splash-screen';
 import { KeyBoard } from './KeyBoard';
 import { createNode } from './utils';
 import { getWord } from './words';
@@ -76,7 +77,7 @@ const start = () => {
 
   gameOverScreen.setAttribute('data-show', false);
 
-  stats = createNode('div', 'stats');
+  stats = createNode('div', 'time');
   display = createNode('div', 'display');
   keyboard = new KeyBoard(type);
   time = new Date().getTime() + duration;
@@ -130,3 +131,5 @@ root.style.setProperty('--body-padding', `${(keySize * 3) + 100}px`);
 start();
 
 document.addEventListener('touchstart', () => {}, false);
+
+SplashScreen.hide();

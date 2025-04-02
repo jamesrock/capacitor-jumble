@@ -125,7 +125,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--glass);
   z-index: 10;
 
   &[data-show="false"] {

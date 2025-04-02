@@ -66,6 +66,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 .keyboard {
   display: flex;
   flex-direction: column;
@@ -164,3 +173,4 @@ body {
     color: var(--highlight-color);
   }
 }
+

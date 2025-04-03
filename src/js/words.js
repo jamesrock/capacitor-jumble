@@ -512,6 +512,9 @@ const words = [
   'SNOBBISH',
   'REPRODUCE',
   'FORESEEABLE',
+  'PYRAMID',
+  'CONDOLENCES',
+  'IMMUNITY',
 ];
 
 console.log(words.length);

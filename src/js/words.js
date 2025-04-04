@@ -515,6 +515,7 @@ const words = [
   'PYRAMID',
   'CONDOLENCES',
   'IMMUNITY',
+  'INFINITY',
 ];
 
 console.log(words.length);

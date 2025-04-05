@@ -301,7 +301,7 @@ const words = [
   'AQUATIC',
   'NAIVE',
   'ENORMOUS',
-  'FOREGOING',
+  'FOREGO',
   'ADHESIVE',
   'CONSCIOUS',
   'DEPENDENT',

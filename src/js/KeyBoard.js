@@ -16,7 +16,7 @@ class KeyBoardRow {
     this.keys = [];
 
     for(var i=0;i<count;i++) {
-      this.keys.push([this.keyboard.keys.splice(Math.floor(Math.random() * (this.keyboard.keys.length)), 1)[0], 1]);
+      this.keys.push(this.keyboard.keys.splice(Math.floor(Math.random() * (this.keyboard.keys.length)), 1)[0]);
     };
 
   };
@@ -56,7 +56,9 @@ export class KeyBoard {
       'X',
       'Y',
       'Z'
-    ]);
+    ].map((key) => {
+      return [key, 1];
+    }));
     this.node = createNode('div', 'keyboard');
     this.rows = [
       new KeyBoardRow(this, 10),

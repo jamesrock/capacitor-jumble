@@ -4,7 +4,7 @@ import { createNode, timeToDisplay, isApp } from './utils';
 import { getWord } from './words';
 import { Storage } from './Storage';
 
-const limit = 1;
+const limit = 10;
 const storage = new Storage('me.jamesrock.jumble');
 let best = storage.get('best') || 0;
 // console.log('best', best);

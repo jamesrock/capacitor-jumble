@@ -1,12 +1,4 @@
-import { createNode, isApp } from './utils';
-
-const shuffle = (cards) => {
-  for (let i = 0; i < cards.length; i++) {
-    let shuffle = Math.floor(Math.random() * (cards.length));
-    [cards[i], cards[shuffle]] = [cards[shuffle], cards[i]];
-  };
-  return cards;
-};
+import { createNode, shuffle, isApp } from './utils';
 
 class KeyBoardRow {
   constructor(keyboard, count) {

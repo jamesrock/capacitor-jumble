@@ -1,50 +1,40 @@
-import { Capacitor } from '@capacitor/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { KeyBoard } from './KeyBoard';
-import { createNode } from './utils';
+import { createNode, timeToDisplay, isApp } from './utils';
 import { getWord } from './words';
 import { Storage } from './Storage';
 
-const duration = (1000*121);
-// const duration = (1000*11);
-// const duration = (1000*60*60);
-
-const platform = Capacitor.getPlatform();
-const isApp = navigator.standalone || platform === 'ios';
-
+const limit = 1;
 const storage = new Storage('me.jamesrock.jumble');
 let best = storage.get('best') || 0;
 // console.log('best', best);
 
 let word = null;
 let input = '';
-let score = 0;
+let count = 0;
 let time = 0;
-let stats = null;
 let display = null;
 let keyboard = null;
+let gameOver = false;
 
 const check = () => {
   return input === word;
 };
 
 const render = () => {
-  
-  const now = new Date().getTime();
-  const diff = time - now;
 
-  if(diff>0) {
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  if(!gameOver) {
     const splitInput = input.split('');
     display.innerHTML = `<div class="word">${word.split('').map((char, index) => {
       return splitInput[index]===char ? `<span class="letter complete">${char}</span>` : `<span class="letter incomplete">${char}</span>`;
     }).join('')}</div>`;
-    stats.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     requestAnimationFrame(render);
-  }
-  else {
-    showGameOverScreen();
+  };
+
+  if(count===limit) {
+    setTimeout(() => {
+      showGameOverScreen();
+    }, 250);
   };
   
 };
@@ -62,7 +52,7 @@ const type = (key) => {
   console.log(input);
   
   if(check()) {
-    score ++;
+    count ++;
     setTimeout(() => {
       word = getWord();
       input = '';
@@ -73,24 +63,22 @@ const type = (key) => {
 
 const start = () => {
 
-  if(stats && display && keyboard) {
-    document.body.removeChild(stats);
+  if(display && keyboard) {
     document.body.removeChild(display);
     keyboard.removeFrom(document.body);
   };
 
   gameOverScreen.setAttribute('data-show', false);
 
-  stats = createNode('div', 'time');
+  gameOver = false;
   display = createNode('div', 'display');
   keyboard = new KeyBoard(type);
-  time = new Date().getTime() + duration;
-  score = 0;
+  time = Date.now();
+  count = 0;
   input = '';
   word = getWord();
 
-  document.body.appendChild(stats);
-  document.body.appendChild(display);
+  document.body.append(display);
   keyboard.renderTo(document.body);
   
   render();
@@ -100,14 +88,17 @@ const start = () => {
 };
 
 const showGameOverScreen = () => {
-  if(score>best) {
-    best = score;
+  gameOver = true;
+  const now = Date.now();
+  const duration = (now - time);
+  if(best===0 || duration<best) {
+    best = duration;
     storage.set('best', best);
   };
   gameOverScreen.innerHTML = `<div class="game-over-body">\
     <h2>Game over!</h2>\
-    <p class="score">Score: ${score}</p>\
-    <p class="best">Best: ${best}</p>\
+    <p class="time">Time: ${timeToDisplay(duration)}</p>\
+    <p class="best">Best: ${timeToDisplay(best)}</p>\
     <p class="retry">Tap to try again.</p>\
   </div>`;
   gameOverScreen.setAttribute('data-show', true);

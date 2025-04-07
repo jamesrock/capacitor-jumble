@@ -19,13 +19,6 @@
   src: url('../assets/fonts/Poppins-BlackItalic.ttf');
 }
 
-@font-face {
-  font-family: 'Azeret';
-  font-weight: 700;
-  font-style: normal;
-  src: url('../assets/fonts/AzeretMono-Bold.ttf');
-}
-
 :root {
   --background: white;
   --foreground: black;
@@ -118,16 +111,6 @@ main {
   font-weight: 900;
 }
 
-.time {
-  font-family: 'Azeret', monospace;
-  position: absolute;
-  top: var(--time-top);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--foreground);
-  opacity: 0.3;
-}
-
 .game-over {
   position: absolute;
   inset: 0;
@@ -157,7 +140,7 @@ main {
     text-transform: uppercase;
   }
 
-  .score,
+  .time,
   .best {
     font-size: 24px;
   }

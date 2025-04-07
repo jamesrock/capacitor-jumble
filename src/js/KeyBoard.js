@@ -1,4 +1,4 @@
-import { createNode } from './utils';
+import { createNode, isApp } from './utils';
 
 const shuffle = (cards) => {
   for (let i = 0; i < cards.length; i++) {
@@ -71,7 +71,7 @@ export class KeyBoard {
         const keyNode = createNode('button', 'key');
         keyNode.innerHTML = key[0];
         rowNode.appendChild(keyNode);
-        keyNode.addEventListener('touchend', (e) => {
+        keyNode.addEventListener(isApp ? 'touchend' : 'click', (e) => {
           this.handler(key);
           e.preventDefault();
         });

@@ -1,8 +1,8 @@
 import { SplashScreen } from '@capacitor/splash-screen';
+import { Storage, createNode, formatTime } from '@jamesrock/rockjs';
 import { KeyBoard } from './KeyBoard';
-import { createNode, timeToDisplay, isApp } from './utils';
+import { isApp } from './utils';
 import { getWord } from './words';
-import { Storage } from './Storage';
 
 const limit = 10;
 const storage = new Storage('me.jamesrock.jumble');
@@ -49,7 +49,7 @@ const type = (key) => {
     input += key[0];
   };
 
-  console.log(input);
+  // console.log(input);
   
   if(check()) {
     count ++;
@@ -83,7 +83,7 @@ const start = () => {
   
   render();
 
-  console.log(keyboard);
+  // console.log(keyboard);
 
 };
 
@@ -97,8 +97,8 @@ const showGameOverScreen = () => {
   };
   gameOverScreen.innerHTML = `<div class="game-over-body">\
     <h2>Game over!</h2>\
-    <p class="time">Time: ${timeToDisplay(duration)}</p>\
-    <p class="best">Best: ${timeToDisplay(best)}</p>\
+    <p class="time">Time: ${formatTime(duration)}</p>\
+    <p class="best">Best: ${formatTime(best)}</p>\
     <p class="retry">Tap to try again.</p>\
   </div>`;
   gameOverScreen.setAttribute('data-show', true);

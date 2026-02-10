@@ -1,4 +1,5 @@
-import { createNode, shuffle, isApp } from './utils';
+import { createNode, shuffle, pluckRandom } from '@jamesrock/rockjs';
+import { isApp } from './utils';
 
 class KeyBoardRow {
   constructor(keyboard, count) {
@@ -8,7 +9,7 @@ class KeyBoardRow {
     this.keys = [];
 
     for(var i=0;i<count;i++) {
-      this.keys.push(this.keyboard.keys.splice(Math.floor(Math.random() * (this.keyboard.keys.length)), 1)[0]);
+      this.keys.push(pluckRandom(this.keyboard.keys));
     };
 
   };

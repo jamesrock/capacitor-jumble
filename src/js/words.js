@@ -1,3 +1,5 @@
+import { pluckRandom } from '@jamesrock/rockjs';
+
 const words = [
   'FLOWERS',
   'LAMPOON',
@@ -518,6 +520,6 @@ const words = [
   'INFINITY',
 ];
 
-console.log(words.length);
+console.log(`word count: ${words.length}`);
 
-export const getWord = () => words.splice(Math.floor(Math.random() * (words.length)), 1)[0];
+export const getWord = () => pluckRandom(words);

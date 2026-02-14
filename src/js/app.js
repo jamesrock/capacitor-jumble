@@ -1,3 +1,4 @@
+import '../css/app.css';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Storage, createNode, formatTime } from '@jamesrock/rockjs';
 import { KeyBoard } from './KeyBoard';
